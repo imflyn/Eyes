@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 
 import flyn.Eyes;
 
-public class StatusBarColorToolBarActivity extends AppCompatActivity {
+public class StatusBarColorCoordinatorActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -16,8 +16,8 @@ public class StatusBarColorToolBarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_statusbar_color_coordinator);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("StatusBarColorToolbar");
+        getSupportActionBar().setTitle("StatusBarColorCoordinatorLayout");
 
-        Eyes.setStatusBarColor(this, ContextCompat.getColor(this, R.color.colorAccent));
+        Eyes.setStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary));
     }
 }

@@ -6,6 +6,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
     <style name="AppTheme.StatusBarColor" parent="AppTheme">
         <item name="colorPrimary">@color/statusBarColor</item>
         <item name="colorPrimaryDark">@color/statusBarColorDark</item>
@@ -17,4 +23,5 @@
         <item name="colorPrimaryDark">@color/statusBarColorDark</item>
         <item name="colorAccent">@color/statusBarColorLight</item>
     </style>
+
 </resources>

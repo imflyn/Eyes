@@ -16,13 +16,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button btn_statusbar_color = (Button) findViewById(R.id.btn_statusbar_color);
-        Button btn_statusbar_color_xml = (Button) findViewById(R.id.btn_statusbar_color_xml);
         Button btn_statusbar_color_toolbar = (Button) findViewById(R.id.btn_statusbar_color_toolbar);
-
+        Button btn_statusbar_translucent = (Button) findViewById(R.id.btn_statusbar_translucent);
+        Button btn_statusbar_color_coordinator = (Button) findViewById(R.id.btn_statusbar_color_coordinator);
+        Button btn_statusbar_translucent_coordinator = (Button) findViewById(R.id.btn_statusbar_translucent_coordinator);
 
         btn_statusbar_color.setOnClickListener(this);
-        btn_statusbar_color_xml.setOnClickListener(this);
         btn_statusbar_color_toolbar.setOnClickListener(this);
+        btn_statusbar_translucent.setOnClickListener(this);
+        btn_statusbar_color_coordinator.setOnClickListener(this);
+        btn_statusbar_translucent_coordinator.setOnClickListener(this);
     }
 
     @Override
@@ -32,11 +35,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_statusbar_color:
                 intent.setClass(this, StatusBarColorActivity.class);
                 break;
-            case R.id.btn_statusbar_color_xml:
-                intent.setClass(this, StatusBarColorXMLActivity.class);
-                break;
             case R.id.btn_statusbar_color_toolbar:
                 intent.setClass(this, StatusBarColorToolBarActivity.class);
+                break;
+            case R.id.btn_statusbar_translucent:
+                intent.setClass(this, StatusBarTranslucent.class);
+                break;
+            case R.id.btn_statusbar_color_coordinator:
+                intent.setClass(this, StatusBarColorCoordinatorActivity.class);
+                break;
+            case R.id.btn_statusbar_translucent_coordinator:
+                intent.setClass(this, StatusBarTranslucentCoordinatorActivity.class);
                 break;
         }
         startActivity(intent);

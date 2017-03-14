@@ -16,12 +16,17 @@
         </activity>
         <activity android:name=".StatusBarColorActivity" />
         <activity
-            android:name=".StatusBarColorXMLActivity"
-            android:theme="@style/AppTheme.StatusBarColor" />
-        <activity
             android:name=".StatusBarColorToolBarActivity"
             android:theme="@style/AppTheme.StatusBarColorWithToolbar" />
-
+        <activity
+            android:name=".StatusBarTranslucent"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".StatusBarColorCoordinatorActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".StatusBarTranslucentCoordinatorActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

@@ -21,23 +21,45 @@
             android:textSize="12dp" />
 
         <Button
-            android:id="@+id/btn_statusbar_color_xml"
-            android:layout_width="match_parent"
-            android:layout_height="48dip"
-            android:layout_marginTop="16dip"
-            android:background="@color/colorPrimary"
-            android:text="Set statusbar color by xml (Applies only to 5.0 above)"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:textSize="12dp" />
-
-        <Button
             android:id="@+id/btn_statusbar_color_toolbar"
             android:layout_width="match_parent"
             android:layout_height="48dip"
             android:layout_marginTop="16dip"
             android:background="@color/colorPrimary"
             android:text="Set statusbar color with toolbar"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btn_statusbar_translucent"
+            android:layout_width="match_parent"
+            android:layout_height="48dip"
+            android:layout_marginTop="16dip"
+            android:background="@color/colorPrimary"
+            android:text="Set statusbar translucent"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btn_statusbar_color_coordinator"
+            android:layout_width="match_parent"
+            android:layout_height="48dip"
+            android:layout_marginTop="16dip"
+            android:background="@color/colorPrimary"
+            android:text="Set statusbar color with coordinatorLayout"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btn_statusbar_translucent_coordinator"
+            android:layout_width="match_parent"
+            android:layout_height="48dip"
+            android:layout_marginTop="16dip"
+            android:background="@color/colorPrimary"
+            android:text="Set statusbar translucent with coordinatorLayout "
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="12dp" />
