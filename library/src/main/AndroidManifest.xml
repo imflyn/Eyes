@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="flyn.eyes">
+    package="flyn.eyes.library">
 
     <application
         android:allowBackup="true"

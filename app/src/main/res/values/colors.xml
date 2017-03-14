@@ -3,4 +3,11 @@
     <color name="colorPrimary">#CB202D</color>
     <color name="colorPrimaryDark">#BC212D</color>
     <color name="colorAccent">#E69BA2</color>
+    <color name="textColorPrimary">#333333</color>
+    <color name="textColorSecondary">#666666</color>
+    <color name="textColorSecondaryLight">#999999</color>
+
+    <color name="statusBarColorDark">#3A5898</color>
+    <color name="statusBarColor">#58BB1F</color>
+    <color name="statusBarColorLight">#dccb18</color>
 </resources>
