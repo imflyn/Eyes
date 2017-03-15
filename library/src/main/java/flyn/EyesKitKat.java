@@ -4,6 +4,7 @@ package flyn;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -17,6 +18,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+
+import java.lang.reflect.Field;
 
 import flyn.eyes.library.R;
 
@@ -125,6 +128,89 @@ class EyesKitKat {
         });
     }
 
+    static void setStatusBarWhiteForCollapsingToolbar(final Activity activity, AppBarLayout appBarLayout, final CollapsingToolbarLayout collapsingToolbarLayout, Toolbar toolbar) {
+        final Window window = activity.getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        ViewGroup mContentView = (ViewGroup) window.findViewById(Window.ID_ANDROID_CONTENT);
+        View mContentChild = mContentView.getChildAt(0);
+        mContentChild.setFitsSystemWindows(false);
+        ((View) appBarLayout.getParent()).setFitsSystemWindows(false);
+        appBarLayout.setFitsSystemWindows(false);
+        collapsingToolbarLayout.setFitsSystemWindows(false);
+        collapsingToolbarLayout.getChildAt(0).setFitsSystemWindows(false);
+        toolbar.setFitsSystemWindows(false);
+
+        if (toolbar.getTag() == null) {
+            CollapsingToolbarLayout.LayoutParams lp = (CollapsingToolbarLayout.LayoutParams) toolbar.getLayoutParams();
+            int statusBarHeight = getStatusBarHeight(activity);
+            lp.height += statusBarHeight;
+            toolbar.setLayoutParams(lp);
+            toolbar.setPadding(toolbar.getPaddingLeft(), toolbar.getPaddingTop() + statusBarHeight, toolbar.getPaddingRight(), toolbar.getPaddingBottom());
+            toolbar.setTag(true);
+        }
+
+        int statusBarHeight = getStatusBarHeight(activity);
+        int color = Color.BLACK;
+        try {
+            Class<?> layoutParams = Class.forName("android.view.MiuiWindowManager$LayoutParams");
+            color = Color.WHITE;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            Field darkFlag = WindowManager.LayoutParams.class.getDeclaredField("MEIZU_FLAG_DARK_STATUS_BAR_ICON");
+            color = Color.WHITE;
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+        final View statusView = addFakeStatusBarView(activity, color, statusBarHeight);
+        CoordinatorLayout.Behavior behavior = ((CoordinatorLayout.LayoutParams) appBarLayout.getLayoutParams()).getBehavior();
+        if (behavior != null && behavior instanceof AppBarLayout.Behavior) {
+            int verticalOffset = ((AppBarLayout.Behavior) behavior).getTopAndBottomOffset();
+            if (Math.abs(verticalOffset) > appBarLayout.getHeight() - collapsingToolbarLayout.getScrimVisibleHeightTrigger()) {
+                statusView.setAlpha(1f);
+            } else {
+                statusView.setAlpha(0f);
+            }
+        } else {
+            statusView.setAlpha(0f);
+        }
+
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            private final static int EXPANDED = 0;
+            private final static int COLLAPSED = 1;
+            private int appBarLayoutState;
+
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (Math.abs(verticalOffset) >= (appBarLayout.getTotalScrollRange() - Eyes.getPxFromDp(activity, 56))) {
+                    if (appBarLayoutState != COLLAPSED) {
+                        appBarLayoutState = COLLAPSED;
+
+                        if (Eyes.MIUISetStatusBarLightMode(activity, true) || Eyes.FlymeSetStatusBarLightMode(activity, true)) {
+                        }
+                        if (statusView.getAlpha() == 0) {
+                            statusView.animate().cancel();
+                            statusView.animate().alpha(1f).setDuration(collapsingToolbarLayout.getScrimAnimationDuration()).start();
+                        }
+                    }
+                } else {
+                    if (appBarLayoutState != EXPANDED) {
+                        appBarLayoutState = EXPANDED;
+
+                        if (Eyes.MIUISetStatusBarLightMode(activity, false) || Eyes.FlymeSetStatusBarLightMode(activity, false)) {
+                        }
+                        if (statusView.getAlpha() == 1) {
+                            statusView.animate().cancel();
+                            statusView.animate().alpha(0f).setDuration(collapsingToolbarLayout.getScrimAnimationDuration()).start();
+                        }
+                    }
+                }
+            }
+        });
+    }
+
     private static void removeFakeStatusBarViewIfExist(Activity activity) {
         Window window = activity.getWindow();
         ViewGroup mDecorView = (ViewGroup) window.getDecorView();
@@ -182,4 +268,6 @@ class EyesKitKat {
             mContentChild.setTag(null);
         }
     }
+
+
 }

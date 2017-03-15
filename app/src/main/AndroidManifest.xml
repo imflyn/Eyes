@@ -33,6 +33,9 @@
         <activity
             android:name=".StatusBarWhiteToolBarActivity"
             android:theme="@style/AppTheme.StatusBarWhite.NoActionBar" />
+        <activity
+            android:name=".StatusBarWhiteCoordinatorActivity"
+            android:theme="@style/AppTheme.StatusBarWhite.NoActionBar" />
     </application>
 
 </manifest>

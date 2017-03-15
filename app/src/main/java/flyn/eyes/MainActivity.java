@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button btn_statusbar_translucent_coordinator = (Button) findViewById(R.id.btn_statusbar_translucent_coordinator);
         Button btn_statusbar_white = (Button) findViewById(R.id.btn_statusbar_white);
         Button btn_statusbar_white_toolbar = (Button) findViewById(R.id.btn_statusbar_white_toolbar);
+        Button btn_statusbar_white_coordinator = (Button) findViewById(R.id.btn_statusbar_white_coordinator);
 
         btn_statusbar_color.setOnClickListener(this);
         btn_statusbar_color_toolbar.setOnClickListener(this);
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_statusbar_translucent_coordinator.setOnClickListener(this);
         btn_statusbar_white.setOnClickListener(this);
         btn_statusbar_white_toolbar.setOnClickListener(this);
+        btn_statusbar_white_coordinator.setOnClickListener(this);
     }
 
     @Override
@@ -56,6 +58,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_statusbar_white_toolbar:
                 intent.setClass(this, StatusBarWhiteToolBarActivity.class);
+                break;
+            case R.id.btn_statusbar_white_coordinator:
+                intent.setClass(this, StatusBarWhiteCoordinatorActivity.class);
                 break;
         }
         startActivity(intent);

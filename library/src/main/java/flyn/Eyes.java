@@ -2,6 +2,7 @@ package flyn;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.ColorInt;
@@ -10,6 +11,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -71,10 +73,21 @@ public class Eyes {
         }
     }
 
+
+    public static void setStatusBarWhiteForCollapsingToolbar(Activity activity, AppBarLayout appBarLayout,
+                                                             CollapsingToolbarLayout collapsingToolbarLayout, Toolbar toolbar) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            EyesLollipop.setStatusBarWhiteForCollapsingToolbar(activity, appBarLayout);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            EyesKitKat.setStatusBarWhiteForCollapsingToolbar(activity, appBarLayout, collapsingToolbarLayout, toolbar);
+        }
+    }
+
+
     /**
      * MIUI 6的沉浸支持透明白色字体和透明黑色字体
      */
-    private static boolean MIUISetStatusBarLightMode(Activity activity, boolean darkmode) {
+    static boolean MIUISetStatusBarLightMode(Activity activity, boolean darkmode) {
         boolean result = false;
         Class<? extends Window> clazz = activity.getWindow().getClass();
         try {
@@ -94,7 +107,7 @@ public class Eyes {
     /**
      * 设置状态栏图标为深色和魅族特定的文字风格，Flyme4.0以上
      */
-    private static boolean FlymeSetStatusBarLightMode(Activity activity, boolean darkmode) {
+    static boolean FlymeSetStatusBarLightMode(Activity activity, boolean darkmode) {
         boolean result = false;
         try {
             WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
@@ -120,10 +133,12 @@ public class Eyes {
         return result;
     }
 
-    public static void setContentTopPadding(Activity activity, int padding) {
+    static void setContentTopPadding(Activity activity, int padding) {
         ViewGroup mContentView = (ViewGroup) activity.getWindow().findViewById(Window.ID_ANDROID_CONTENT);
         mContentView.setPadding(0, padding, 0, 0);
     }
 
-
+    static int getPxFromDp(Context context, float dp) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
+    }
 }

@@ -142,6 +142,62 @@ class EyesLollipop {
         collapsingToolbarLayout.setStatusBarScrimColor(statusColor);
     }
 
+    static void setStatusBarWhiteForCollapsingToolbar(final Activity activity, final AppBarLayout appBarLayout) {
+        translucentStatusBar(activity, true);
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            private final static int EXPANDED = 0;
+            private final static int COLLAPSED = 1;
+            private int appBarLayoutState;
+
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (Math.abs(verticalOffset) >= (appBarLayout.getTotalScrollRange() - Eyes.getPxFromDp(activity, 56))) {
+                    if (appBarLayoutState != COLLAPSED) {
+                        appBarLayoutState = COLLAPSED;
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            activity.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                            activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+                            activity.getWindow().setStatusBarColor(Color.WHITE);
+
+                            ViewGroup mContentView = (ViewGroup) activity.getWindow().findViewById(Window.ID_ANDROID_CONTENT);
+                            View mChildView = mContentView.getChildAt(0);
+                            if (mChildView != null) {
+                                ViewCompat.setFitsSystemWindows(mChildView, true);
+                                ViewCompat.requestApplyInsets(mChildView);
+                            }
+                        } else {
+                            setStatusBarColor(activity, Color.BLACK);
+                        }
+                    }
+                } else {
+                    if (appBarLayoutState != EXPANDED) {
+                        appBarLayoutState = EXPANDED;
+                        translucentStatusBar(activity, true);
+                    }
+                }
+            }
+        });
+
+
+//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//        if (hideStatusBarBackground) {
+//            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//            window.setStatusBarColor(Color.TRANSPARENT);
+//            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+//        } else {
+//            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+//        }
+//
+//        ViewGroup mContentView = (ViewGroup) window.findViewById(Window.ID_ANDROID_CONTENT);
+//        View mChildView = mContentView.getChildAt(0);
+//        if (mChildView != null) {
+//            ViewCompat.setFitsSystemWindows(mChildView, false);
+//            ViewCompat.requestApplyInsets(mChildView);
+//        }
+    }
+
     private static int getStatusBarHeight(Context context) {
         int result = 0;
         int resId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
