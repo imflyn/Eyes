@@ -8,8 +8,10 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -46,14 +48,25 @@ public class Eyes {
 
     public static void setStatusBarWhite(Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            if (!MIUISetStatusBarLightMode(activity, false) && !FlymeSetStatusBarLightMode(activity, false)) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    activity.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-                    activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            if (MIUISetStatusBarLightMode(activity, true) || FlymeSetStatusBarLightMode(activity, true)) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//5.0
                     activity.getWindow().setStatusBarColor(Color.WHITE);
-                } else {
-                    setStatusBarColor(activity, android.R.color.darker_gray);
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {//4.4
+                    setStatusBarColor(activity, Color.WHITE);
                 }
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                activity.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+                activity.getWindow().setStatusBarColor(Color.WHITE);
+
+                ViewGroup mContentView = (ViewGroup) activity.getWindow().findViewById(Window.ID_ANDROID_CONTENT);
+                View mChildView = mContentView.getChildAt(0);
+                if (mChildView != null) {
+                    ViewCompat.setFitsSystemWindows(mChildView, true);
+                    ViewCompat.requestApplyInsets(mChildView);
+                }
+            } else {
+                setStatusBarColor(activity, Color.BLACK);
             }
         }
     }
@@ -106,4 +119,11 @@ public class Eyes {
         }
         return result;
     }
+
+    public static void setContentTopPadding(Activity activity, int padding) {
+        ViewGroup mContentView = (ViewGroup) activity.getWindow().findViewById(Window.ID_ANDROID_CONTENT);
+        mContentView.setPadding(0, padding, 0, 0);
+    }
+
+
 }

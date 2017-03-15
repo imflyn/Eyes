@@ -10,12 +10,16 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+
+import flyn.eyes.library.R;
+
 @TargetApi(Build.VERSION_CODES.KITKAT)
 class EyesKitKat {
     private static final String TAG_FAKE_STATUS_BAR_VIEW = "statusBarView";
@@ -35,6 +39,18 @@ class EyesKitKat {
 
         if (mContentChild != null) {
             ViewCompat.setFitsSystemWindows(mContentChild, false);
+        }
+
+        int action_bar_id = activity.getResources().getIdentifier("action_bar", "id", activity.getPackageName());
+        View view = activity.findViewById(action_bar_id);
+        if (view != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
+                TypedValue typedValue = new TypedValue();
+                if (activity.getTheme().resolveAttribute(R.attr.actionBarSize, typedValue, true)) {
+                    int actionBarHeight = TypedValue.complexToDimensionPixelSize(typedValue.data, activity.getResources().getDisplayMetrics());
+                    Eyes.setContentTopPadding(activity, actionBarHeight);
+                }
+            }
         }
     }
 

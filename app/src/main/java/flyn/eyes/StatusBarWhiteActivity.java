@@ -14,6 +14,7 @@ public class StatusBarWhiteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statusbar_white);
         getSupportActionBar().setTitle("StatusBarWhite");
+
         Eyes.setStatusBarWhite(this);
     }
 }

@@ -17,7 +17,6 @@ public class StatusBarColorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_statusbar_color);
         getSupportActionBar().setTitle("StatusBarColorByCodes");
 
-
         Eyes.setStatusBarColor(this, ContextCompat.getColor(this, R.color.colorAccent));
     }
 }
