@@ -24,4 +24,9 @@
         <item name="colorAccent">@color/statusBarColorLight</item>
     </style>
 
+    <style name="AppTheme.StatusBarWhite" parent="AppTheme">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
 </resources>

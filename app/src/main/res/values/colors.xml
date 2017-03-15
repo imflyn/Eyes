@@ -10,4 +10,5 @@
     <color name="statusBarColorDark">#3A5898</color>
     <color name="statusBarColor">#58BB1F</color>
     <color name="statusBarColorLight">#dccb18</color>
+    <color name="white">#FFFFFF</color>
 </resources>
