@@ -190,6 +190,8 @@ class EyesLollipop {
         }
 
         collapsingToolbarLayout.setFitsSystemWindows(false);
+        collapsingToolbarLayout.getChildAt(0).setFitsSystemWindows(false);
+        collapsingToolbarLayout.setStatusBarScrimColor(Color.WHITE);
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             private final static int EXPANDED = 0;
             private final static int COLLAPSED = 1;
@@ -225,6 +227,7 @@ class EyesLollipop {
 
                         int color = Color.BLACK;
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
                             color = Color.WHITE;
                         }
                         ValueAnimator animator = ValueAnimator.ofArgb(color, Color.TRANSPARENT)
