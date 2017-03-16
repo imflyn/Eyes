@@ -1,6 +1,7 @@
 package flyn.eyes;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -25,6 +26,6 @@ public class StatusBarWhiteCoordinatorActivity extends AppCompatActivity {
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_layout);
         collapsingToolbarLayout.setTitle(getString(R.string.app_name));
 
-        Eyes.setStatusBarWhiteForCollapsingToolbar(this, mAppBarLayout, collapsingToolbarLayout, toolbar);
+        Eyes.setStatusBarLightForCollapsingToolbar(this, mAppBarLayout, collapsingToolbarLayout, toolbar, Color.WHITE);
     }
 }

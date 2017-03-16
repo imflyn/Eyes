@@ -1,5 +1,6 @@
 package flyn.eyes;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +19,6 @@ public class StatusBarWhiteToolBarActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("StatusBar white with toolbar");
 
-        Eyes.setStatusBarWhite(this);
-
+        Eyes.setStatusBarLightMode(this, Color.WHITE);
     }
 }

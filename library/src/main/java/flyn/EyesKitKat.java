@@ -128,7 +128,7 @@ class EyesKitKat {
         });
     }
 
-    static void setStatusBarWhiteForCollapsingToolbar(final Activity activity, AppBarLayout appBarLayout, final CollapsingToolbarLayout collapsingToolbarLayout, Toolbar toolbar) {
+    static void setStatusBarWhiteForCollapsingToolbar(final Activity activity, AppBarLayout appBarLayout, final CollapsingToolbarLayout collapsingToolbarLayout, Toolbar toolbar, final int statusBarColor) {
         final Window window = activity.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
@@ -154,13 +154,13 @@ class EyesKitKat {
         int color = Color.BLACK;
         try {
             Class<?> layoutParams = Class.forName("android.view.MiuiWindowManager$LayoutParams");
-            color = Color.WHITE;
+            color = statusBarColor;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         try {
             Field darkFlag = WindowManager.LayoutParams.class.getDeclaredField("MEIZU_FLAG_DARK_STATUS_BAR_ICON");
-            color = Color.WHITE;
+            color = statusBarColor;
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
         }

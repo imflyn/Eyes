@@ -142,7 +142,7 @@ class EyesLollipop {
         collapsingToolbarLayout.setStatusBarScrimColor(statusColor);
     }
 
-    static void setStatusBarWhiteForCollapsingToolbar(final Activity activity, final AppBarLayout appBarLayout, final CollapsingToolbarLayout collapsingToolbarLayout, final Toolbar toolbar) {
+    static void setStatusBarWhiteForCollapsingToolbar(final Activity activity, final AppBarLayout appBarLayout, final CollapsingToolbarLayout collapsingToolbarLayout, final Toolbar toolbar, final int statusBarColor) {
         final Window window = activity.getWindow();
 
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -191,7 +191,7 @@ class EyesLollipop {
 
         collapsingToolbarLayout.setFitsSystemWindows(false);
         collapsingToolbarLayout.getChildAt(0).setFitsSystemWindows(false);
-        collapsingToolbarLayout.setStatusBarScrimColor(Color.WHITE);
+        collapsingToolbarLayout.setStatusBarScrimColor(statusBarColor);
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             private final static int EXPANDED = 0;
             private final static int COLLAPSED = 1;
@@ -207,9 +207,9 @@ class EyesLollipop {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             activity.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
                             activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-                            activity.getWindow().setStatusBarColor(Color.WHITE);
+                            activity.getWindow().setStatusBarColor(statusBarColor);
 
-                            color = Color.WHITE;
+                            color = statusBarColor;
                         }
                         ValueAnimator animator = ValueAnimator.ofArgb(Color.TRANSPARENT, color)
                                 .setDuration(collapsingToolbarLayout.getScrimAnimationDuration());
@@ -228,7 +228,7 @@ class EyesLollipop {
                         int color = Color.BLACK;
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-                            color = Color.WHITE;
+                            color = statusBarColor;
                         }
                         ValueAnimator animator = ValueAnimator.ofArgb(color, Color.TRANSPARENT)
                                 .setDuration(collapsingToolbarLayout.getScrimAnimationDuration());

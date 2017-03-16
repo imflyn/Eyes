@@ -48,18 +48,18 @@ public class Eyes {
         }
     }
 
-    public static void setStatusBarWhite(Activity activity) {
+    public static void setStatusBarLightMode(Activity activity, int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             if (MIUISetStatusBarLightMode(activity, true) || FlymeSetStatusBarLightMode(activity, true)) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//5.0
-                    activity.getWindow().setStatusBarColor(Color.WHITE);
+                    activity.getWindow().setStatusBarColor(color);
                 } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {//4.4
-                    setStatusBarColor(activity, Color.WHITE);
+                    setStatusBarColor(activity, color);
                 }
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 activity.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
                 activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-                activity.getWindow().setStatusBarColor(Color.WHITE);
+                activity.getWindow().setStatusBarColor(color);
 
                 ViewGroup mContentView = (ViewGroup) activity.getWindow().findViewById(Window.ID_ANDROID_CONTENT);
                 View mChildView = mContentView.getChildAt(0);
@@ -74,12 +74,12 @@ public class Eyes {
     }
 
 
-    public static void setStatusBarWhiteForCollapsingToolbar(Activity activity, AppBarLayout appBarLayout,
-                                                             CollapsingToolbarLayout collapsingToolbarLayout, Toolbar toolbar) {
+    public static void setStatusBarLightForCollapsingToolbar(Activity activity, AppBarLayout appBarLayout,
+                                                             CollapsingToolbarLayout collapsingToolbarLayout, Toolbar toolbar, int statusBarColor) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            EyesLollipop.setStatusBarWhiteForCollapsingToolbar(activity, appBarLayout, collapsingToolbarLayout, toolbar);
+            EyesLollipop.setStatusBarWhiteForCollapsingToolbar(activity, appBarLayout, collapsingToolbarLayout, toolbar, statusBarColor);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            EyesKitKat.setStatusBarWhiteForCollapsingToolbar(activity, appBarLayout, collapsingToolbarLayout, toolbar);
+            EyesKitKat.setStatusBarWhiteForCollapsingToolbar(activity, appBarLayout, collapsingToolbarLayout, toolbar, statusBarColor);
         }
     }
 
