@@ -77,7 +77,7 @@ public class Eyes {
     public static void setStatusBarWhiteForCollapsingToolbar(Activity activity, AppBarLayout appBarLayout,
                                                              CollapsingToolbarLayout collapsingToolbarLayout, Toolbar toolbar) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            EyesLollipop.setStatusBarWhiteForCollapsingToolbar(activity, appBarLayout);
+            EyesLollipop.setStatusBarWhiteForCollapsingToolbar(activity, appBarLayout, collapsingToolbarLayout, toolbar);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             EyesKitKat.setStatusBarWhiteForCollapsingToolbar(activity, appBarLayout, collapsingToolbarLayout, toolbar);
         }

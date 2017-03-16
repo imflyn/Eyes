@@ -24,7 +24,6 @@ public class StatusBarWhiteCoordinatorActivity extends AppCompatActivity {
         AppBarLayout mAppBarLayout = (AppBarLayout) findViewById(R.id.appbar);
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_layout);
         collapsingToolbarLayout.setTitle(getString(R.string.app_name));
-        Eyes.translucentStatusBar(this, false);
 
         Eyes.setStatusBarWhiteForCollapsingToolbar(this, mAppBarLayout, collapsingToolbarLayout, toolbar);
     }
