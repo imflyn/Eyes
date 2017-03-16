@@ -19,6 +19,6 @@ public class StatusBarWhiteToolBarActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("StatusBar white with toolbar");
 
-        Eyes.setStatusBarLightMode(this, Color.WHITE);
+        Eyes.setStatusBarLightMode(this, Color.RED);
     }
 }
