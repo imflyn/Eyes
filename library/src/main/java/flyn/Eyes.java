@@ -50,17 +50,21 @@ public class Eyes {
 
     public static void setStatusBarLightMode(Activity activity, int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            //判断是否为小米或魅族手机，如果是则将状态栏文字改为黑色
             if (MIUISetStatusBarLightMode(activity, true) || FlymeSetStatusBarLightMode(activity, true)) {
+                //设置状态栏为指定颜色
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//5.0
                     activity.getWindow().setStatusBarColor(color);
                 } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {//4.4
                     setStatusBarColor(activity, color);
                 }
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                //如果是6.0以上将状态栏文字改为黑色，并设置状态栏颜色
                 activity.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
                 activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
                 activity.getWindow().setStatusBarColor(color);
 
+                //fitsSystemWindow 为 false, 不预留系统栏位置.
                 ViewGroup mContentView = (ViewGroup) activity.getWindow().findViewById(Window.ID_ANDROID_CONTENT);
                 View mChildView = mContentView.getChildAt(0);
                 if (mChildView != null) {
@@ -68,6 +72,7 @@ public class Eyes {
                     ViewCompat.requestApplyInsets(mChildView);
                 }
             } else {
+                //其余情况无法处理，将状态栏置为黑色
                 setStatusBarColor(activity, Color.BLACK);
             }
         }

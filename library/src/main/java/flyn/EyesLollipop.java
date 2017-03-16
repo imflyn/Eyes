@@ -24,12 +24,15 @@ class EyesLollipop {
 
     static void setStatusBarColor(Activity activity, int statusColor) {
         Window window = activity.getWindow();
-
+        //取消状态栏透明
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        //添加Flag把状态栏设为可绘制模式
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        //设置状态栏颜色
         window.setStatusBarColor(statusColor);
+        //设置系统状态栏处于可见状态
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
-
+        //让view不根据系统窗口来调整自己的布局
         ViewGroup mContentView = (ViewGroup) window.findViewById(Window.ID_ANDROID_CONTENT);
         View mChildView = mContentView.getChildAt(0);
         if (mChildView != null) {
@@ -40,17 +43,22 @@ class EyesLollipop {
 
     static void translucentStatusBar(Activity activity, boolean hideStatusBarBackground) {
         Window window = activity.getWindow();
-
+        //添加Flag把状态栏设为可绘制模式
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         if (hideStatusBarBackground) {
+            //如果为全透明模式，取消设置Window半透明的Flag
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            //设置状态栏为透明
             window.setStatusBarColor(Color.TRANSPARENT);
+            //设置window的状态栏不可见
             window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         } else {
+            //如果为半透明模式，添加设置Window半透明的Flag
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            //设置系统状态栏处于可见状态
             window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
         }
-
+        //view不根据系统窗口来调整自己的布局
         ViewGroup mContentView = (ViewGroup) window.findViewById(Window.ID_ANDROID_CONTENT);
         View mChildView = mContentView.getChildAt(0);
         if (mChildView != null) {
@@ -62,12 +70,15 @@ class EyesLollipop {
     static void setStatusBarColorForCollapsingToolbar(Activity activity, final AppBarLayout appBarLayout, final CollapsingToolbarLayout collapsingToolbarLayout,
                                                       Toolbar toolbar, final int statusColor) {
         final Window window = activity.getWindow();
-
+        //取消设置Window半透明的Flag
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        ////添加Flag把状态栏设为可绘制模式
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        //设置状态栏为透明
         window.setStatusBarColor(Color.TRANSPARENT);
+        //设置系统状态栏处于可见状态
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
-
+        //通过OnApplyWindowInsetsListener()使Layout在绘制过程中将View向下偏移了,使collapsingToolbarLayout可以占据状态栏
         ViewCompat.setOnApplyWindowInsetsListener(collapsingToolbarLayout, new OnApplyWindowInsetsListener() {
             @Override
             public WindowInsetsCompat onApplyWindowInsets(View v, WindowInsetsCompat insets) {
@@ -77,6 +88,7 @@ class EyesLollipop {
 
         ViewGroup mContentView = (ViewGroup) window.findViewById(Window.ID_ANDROID_CONTENT);
         View mChildView = mContentView.getChildAt(0);
+        //view不根据系统窗口来调整自己的布局
         if (mChildView != null) {
             ViewCompat.setFitsSystemWindows(mChildView, false);
             ViewCompat.requestApplyInsets(mChildView);
@@ -86,6 +98,7 @@ class EyesLollipop {
         appBarLayout.setFitsSystemWindows(false);
 
         toolbar.setFitsSystemWindows(false);
+        //为Toolbar添加一个状态栏的高度, 同时为Toolbar添加paddingTop,使Toolbar覆盖状态栏，ToolBar的title可以正常显示.
         if (toolbar.getTag() == null) {
             CollapsingToolbarLayout.LayoutParams lp = (CollapsingToolbarLayout.LayoutParams) toolbar.getLayoutParams();
             int statusBarHeight = getStatusBarHeight(activity);
@@ -112,6 +125,7 @@ class EyesLollipop {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 if (Math.abs(verticalOffset) > appBarLayout.getHeight() - collapsingToolbarLayout.getScrimVisibleHeightTrigger()) {
+                    //toolbar被折叠时显示状态栏
                     if (window.getStatusBarColor() == Color.TRANSPARENT) {
                         ValueAnimator animator = ValueAnimator.ofArgb(Color.TRANSPARENT, statusColor)
                                 .setDuration(collapsingToolbarLayout.getScrimAnimationDuration());
@@ -124,6 +138,7 @@ class EyesLollipop {
                         animator.start();
                     }
                 } else {
+                    //toolbar显示时同时显示状态栏
                     if (window.getStatusBarColor() == statusColor) {
                         ValueAnimator animator = ValueAnimator.ofArgb(statusColor, Color.TRANSPARENT)
                                 .setDuration(collapsingToolbarLayout.getScrimAnimationDuration());
@@ -139,6 +154,7 @@ class EyesLollipop {
             }
         });
         collapsingToolbarLayout.getChildAt(0).setFitsSystemWindows(false);
+        //设置状态栏的颜色
         collapsingToolbarLayout.setStatusBarScrimColor(statusColor);
     }
 
