@@ -3,7 +3,6 @@ package flyn;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
@@ -56,6 +55,7 @@ public class Eyes {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//5.0
                     activity.getWindow().setStatusBarColor(color);
                 } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {//4.4
+                    //调用修改状态栏颜色的方法
                     setStatusBarColor(activity, color);
                 }
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -71,9 +71,6 @@ public class Eyes {
                     ViewCompat.setFitsSystemWindows(mChildView, true);
                     ViewCompat.requestApplyInsets(mChildView);
                 }
-            } else {
-                //其余情况无法处理，将状态栏置为黑色
-                setStatusBarColor(activity, Color.BLACK);
             }
         }
     }

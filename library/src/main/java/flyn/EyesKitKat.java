@@ -53,12 +53,10 @@ class EyesKitKat {
         int action_bar_id = activity.getResources().getIdentifier("action_bar", "id", activity.getPackageName());
         View view = activity.findViewById(action_bar_id);
         if (view != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
-                TypedValue typedValue = new TypedValue();
-                if (activity.getTheme().resolveAttribute(R.attr.actionBarSize, typedValue, true)) {
-                    int actionBarHeight = TypedValue.complexToDimensionPixelSize(typedValue.data, activity.getResources().getDisplayMetrics());
-                    Eyes.setContentTopPadding(activity, actionBarHeight);
-                }
+           TypedValue typedValue = new TypedValue();
+            if (activity.getTheme().resolveAttribute(R.attr.actionBarSize, typedValue, true)) {
+                int actionBarHeight = TypedValue.complexToDimensionPixelSize(typedValue.data, activity.getResources().getDisplayMetrics());
+                Eyes.setContentTopPadding(activity, actionBarHeight);
             }
         }
     }

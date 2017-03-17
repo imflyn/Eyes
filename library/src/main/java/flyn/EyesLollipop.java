@@ -215,7 +215,7 @@ class EyesLollipop {
 
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                if (Math.abs(verticalOffset) >= (appBarLayout.getTotalScrollRange() - Eyes.getPxFromDp(activity, 56))) {
+                if (Math.abs(verticalOffset) > collapsingToolbarLayout.getScrimVisibleHeightTrigger()) {
                     if (appBarLayoutState != COLLAPSED) {
                         appBarLayoutState = COLLAPSED;
 
