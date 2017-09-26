@@ -9,7 +9,6 @@ import android.os.Build;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -47,7 +46,7 @@ class EyesKitKat {
         addMarginTopToContentChild(mContentChild, statusBarHeight);
         //不预留系统栏位置
         if (mContentChild != null) {
-            ViewCompat.setFitsSystemWindows(mContentChild, false);
+            mContentChild.setFitsSystemWindows(true);
         }
         //如果在Activity中使用了ActionBar则需要再将布局与状态栏的高度跳高一个ActionBar的高度，否则内容会被ActionBar遮挡
         int action_bar_id = activity.getResources().getIdentifier("action_bar", "id", activity.getPackageName());
@@ -74,7 +73,7 @@ class EyesKitKat {
         removeMarginTopOfContentChild(mContentChild, getStatusBarHeight(activity));
         if (mContentChild != null) {
             //fitsSystemWindow 为 false, 不预留系统栏位置.
-            ViewCompat.setFitsSystemWindows(mContentChild, false);
+            mContentChild.setFitsSystemWindows(true);
         }
     }
 

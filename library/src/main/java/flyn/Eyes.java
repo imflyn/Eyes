@@ -72,7 +72,7 @@ public class Eyes {
                 ViewGroup mContentView = (ViewGroup) activity.getWindow().findViewById(Window.ID_ANDROID_CONTENT);
                 View mChildView = mContentView.getChildAt(0);
                 if (mChildView != null) {
-                    ViewCompat.setFitsSystemWindows(mChildView, true);
+                    mChildView.setFitsSystemWindows(true);
                     ViewCompat.requestApplyInsets(mChildView);
                 }
             }

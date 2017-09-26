@@ -34,7 +34,7 @@ class EyesLollipop {
         ViewGroup mContentView = (ViewGroup) window.findViewById(Window.ID_ANDROID_CONTENT);
         View mChildView = mContentView.getChildAt(0);
         if (mChildView != null) {
-            ViewCompat.setFitsSystemWindows(mChildView, false);
+            mChildView.setFitsSystemWindows(false);
             ViewCompat.requestApplyInsets(mChildView);
         }
     }
@@ -60,7 +60,7 @@ class EyesLollipop {
         ViewGroup mContentView = (ViewGroup) window.findViewById(Window.ID_ANDROID_CONTENT);
         View mChildView = mContentView.getChildAt(0);
         if (mChildView != null) {
-            ViewCompat.setFitsSystemWindows(mChildView, false);
+            mChildView.setFitsSystemWindows(false);
             ViewCompat.requestApplyInsets(mChildView);
         }
     }
@@ -88,7 +88,7 @@ class EyesLollipop {
         View mChildView = mContentView.getChildAt(0);
         //view不根据系统窗口来调整自己的布局
         if (mChildView != null) {
-            ViewCompat.setFitsSystemWindows(mChildView, false);
+            mChildView.setFitsSystemWindows(false);
             ViewCompat.requestApplyInsets(mChildView);
         }
 
@@ -150,7 +150,7 @@ class EyesLollipop {
         ViewGroup mContentView = (ViewGroup) window.findViewById(Window.ID_ANDROID_CONTENT);
         View mChildView = mContentView.getChildAt(0);
         if (mChildView != null) {
-            ViewCompat.setFitsSystemWindows(mChildView, false);
+            mChildView.setFitsSystemWindows(false);
             ViewCompat.requestApplyInsets(mChildView);
         }
 
