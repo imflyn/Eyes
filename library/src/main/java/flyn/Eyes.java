@@ -69,7 +69,7 @@ public class Eyes {
                 activity.getWindow().setStatusBarColor(color);
 
                 //fitsSystemWindow 为 false, 不预留系统栏位置.
-                ViewGroup mContentView = (ViewGroup) activity.getWindow().findViewById(Window.ID_ANDROID_CONTENT);
+                ViewGroup mContentView = activity.getWindow().findViewById(Window.ID_ANDROID_CONTENT);
                 View mChildView = mContentView.getChildAt(0);
                 if (mChildView != null) {
                     mChildView.setFitsSystemWindows(true);
@@ -91,9 +91,14 @@ public class Eyes {
 
 
     /**
-     * MIUI 6的沉浸支持透明白色字体和透明黑色字体
+     * MIUI的沉浸支持透明白色字体和透明黑色字体
+     * https://dev.mi.com/console/doc/detail?pId=1159
      */
     static boolean MIUISetStatusBarLightMode(Activity activity, boolean darkmode) {
+        Window window = activity.getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         boolean result = false;
         Class<? extends Window> clazz = activity.getWindow().getClass();
         try {
@@ -140,7 +145,7 @@ public class Eyes {
     }
 
     static void setContentTopPadding(Activity activity, int padding) {
-        ViewGroup mContentView = (ViewGroup) activity.getWindow().findViewById(Window.ID_ANDROID_CONTENT);
+        ViewGroup mContentView = activity.getWindow().findViewById(Window.ID_ANDROID_CONTENT);
         mContentView.setPadding(0, padding, 0, 0);
     }
 

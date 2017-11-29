@@ -18,12 +18,12 @@ public class StatusBarWhiteCoordinatorActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statusbar_white_coordinator);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("StatusBar White whith CoordinatorLayout");
 
-        AppBarLayout mAppBarLayout = (AppBarLayout) findViewById(R.id.appbar);
-        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_layout);
+        AppBarLayout mAppBarLayout = findViewById(R.id.appbar);
+        CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_layout);
         collapsingToolbarLayout.setTitle(getString(R.string.app_name));
 
         Eyes.setStatusBarLightForCollapsingToolbar(this, mAppBarLayout, collapsingToolbarLayout, toolbar, Color.WHITE);
