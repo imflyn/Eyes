@@ -46,7 +46,7 @@ class EyesKitKat {
         addMarginTopToContentChild(mContentChild, statusBarHeight);
         //不预留系统栏位置
         if (mContentChild != null) {
-            mContentChild.setFitsSystemWindows(true);
+            mContentChild.setFitsSystemWindows(false);
         }
         //如果在Activity中使用了ActionBar则需要再将布局与状态栏的高度跳高一个ActionBar的高度，否则内容会被ActionBar遮挡
         int action_bar_id = activity.getResources().getIdentifier("action_bar", "id", activity.getPackageName());
@@ -73,11 +73,11 @@ class EyesKitKat {
         removeMarginTopOfContentChild(mContentChild, getStatusBarHeight(activity));
         if (mContentChild != null) {
             //fitsSystemWindow 为 false, 不预留系统栏位置.
-            mContentChild.setFitsSystemWindows(true);
+            mContentChild.setFitsSystemWindows(false);
         }
     }
 
-    static void setStatusBarColorForCollapsingToolbar(Activity activity, final AppBarLayout appBarLayout, final CollapsingToolbarLayout collapsingToolbarLayout,
+    static void setStatusBarColorForCollapsingToolbar(final Activity activity, final AppBarLayout appBarLayout, final CollapsingToolbarLayout collapsingToolbarLayout,
                                                       Toolbar toolbar, int statusColor) {
         Window window = activity.getWindow();
         //设置Window为全透明
@@ -217,6 +217,7 @@ class EyesKitKat {
                             statusView.animate().cancel();
                             statusView.animate().alpha(0f).setDuration(collapsingToolbarLayout.getScrimAnimationDuration()).start();
                         }
+                        translucentStatusBar(activity);
                     }
                 }
             }
