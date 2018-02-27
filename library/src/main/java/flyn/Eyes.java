@@ -95,31 +95,30 @@ public class Eyes {
      * https://dev.mi.com/console/doc/detail?pId=1159
      */
     static boolean MIUISetStatusBarLightMode(Activity activity, boolean darkmode) {
-        Window window = activity.getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        boolean result = false;
-        Class<? extends Window> clazz = activity.getWindow().getClass();
         try {
-            int darkModeFlag = 0;
             Class<?> layoutParams = Class.forName("android.view.MiuiWindowManager$LayoutParams");
+
+            Window window = activity.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
+            Class<? extends Window> clazz = activity.getWindow().getClass();
             Field field = layoutParams.getField("EXTRA_FLAG_STATUS_BAR_DARK_MODE");
-            darkModeFlag = field.getInt(layoutParams);
+            int darkModeFlag = field.getInt(layoutParams);
             Method extraFlagField = clazz.getMethod("setExtraFlags", int.class, int.class);
             extraFlagField.invoke(activity.getWindow(), darkmode ? darkModeFlag : 0, darkModeFlag);
-            result = true;
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return result;
+        return false;
     }
 
     /**
      * 设置状态栏图标为深色和魅族特定的文字风格，Flyme4.0以上
      */
     static boolean FlymeSetStatusBarLightMode(Activity activity, boolean darkmode) {
-        boolean result = false;
         try {
             WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
             Field darkFlag = WindowManager.LayoutParams.class
@@ -137,11 +136,11 @@ public class Eyes {
             }
             meizuFlags.setInt(lp, value);
             activity.getWindow().setAttributes(lp);
-            result = true;
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return result;
+        return false;
     }
 
     static void setContentTopPadding(Activity activity, int padding) {
