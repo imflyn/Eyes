@@ -117,10 +117,11 @@ class StatusBarLollipopCompact {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 //toolbar被折叠时显示状态栏
+//                System.out.println(Math.abs(verticalOffset) + " , " + collapsingToolbarLayout.getScrimVisibleHeightTrigger());
                 if (Math.abs(verticalOffset) > collapsingToolbarLayout.getScrimVisibleHeightTrigger()) {
                     if (appBarLayoutState != COLLAPSED) {
                         appBarLayoutState = COLLAPSED;//修改状态标记为折叠
-                        setStatusBarColor(activity, statusColor);
+//                        setStatusBarColor(activity, statusColor);
                     }
                 } else {
                     //toolbar显示时同时显示状态栏
