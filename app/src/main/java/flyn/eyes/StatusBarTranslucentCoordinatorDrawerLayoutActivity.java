@@ -35,5 +35,7 @@ public class StatusBarTranslucentCoordinatorDrawerLayoutActivity extends AppComp
         collapsingToolbarLayout.setTitle(getString(R.string.app_name));
 
         StatusBarUtil.setStatusBarColorForCollapsingToolbar(this, mAppBarLayout, collapsingToolbarLayout, toolbar, ContextCompat.getColor(this, R.color.colorPrimary));
+
+        StatusBarUtil.setNavigationBarStatusBarTranslucent(this);
     }
 }
