@@ -15,20 +15,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button btn_statusbar_color = (Button) findViewById(R.id.btn_statusbar_color);
-        Button btn_statusbar_color_toolbar = (Button) findViewById(R.id.btn_statusbar_color_toolbar);
-        Button btn_statusbar_translucent = (Button) findViewById(R.id.btn_statusbar_translucent);
-        Button btn_statusbar_color_coordinator = (Button) findViewById(R.id.btn_statusbar_color_coordinator);
-        Button btn_statusbar_translucent_coordinator = (Button) findViewById(R.id.btn_statusbar_translucent_coordinator);
-        Button btn_statusbar_white = (Button) findViewById(R.id.btn_statusbar_white);
-        Button btn_statusbar_white_toolbar = (Button) findViewById(R.id.btn_statusbar_white_toolbar);
-        Button btn_statusbar_white_coordinator = (Button) findViewById(R.id.btn_statusbar_white_coordinator);
+        Button btn_statusbar_color = findViewById(R.id.btn_statusbar_color);
+        Button btn_statusbar_color_toolbar = findViewById(R.id.btn_statusbar_color_toolbar);
+        Button btn_statusbar_translucent = findViewById(R.id.btn_statusbar_translucent);
+        Button btn_statusbar_color_coordinator = findViewById(R.id.btn_statusbar_color_coordinator);
+        Button btn_statusbar_translucent_coordinator = findViewById(R.id.btn_statusbar_translucent_coordinator);
+        Button btn_statusbar_translucent_coordinator_drawerlayout = findViewById(R.id.btn_statusbar_translucent_coordinator_drawerlayout);
+        Button btn_statusbar_white = findViewById(R.id.btn_statusbar_white);
+        Button btn_statusbar_white_toolbar = findViewById(R.id.btn_statusbar_white_toolbar);
+        Button btn_statusbar_white_coordinator = findViewById(R.id.btn_statusbar_white_coordinator);
 
         btn_statusbar_color.setOnClickListener(this);
         btn_statusbar_color_toolbar.setOnClickListener(this);
         btn_statusbar_translucent.setOnClickListener(this);
         btn_statusbar_color_coordinator.setOnClickListener(this);
         btn_statusbar_translucent_coordinator.setOnClickListener(this);
+        btn_statusbar_translucent_coordinator_drawerlayout.setOnClickListener(this);
         btn_statusbar_white.setOnClickListener(this);
         btn_statusbar_white_toolbar.setOnClickListener(this);
         btn_statusbar_white_coordinator.setOnClickListener(this);
@@ -52,6 +54,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_statusbar_translucent_coordinator:
                 intent.setClass(this, StatusBarTranslucentCoordinatorActivity.class);
+                break;
+            case R.id.btn_statusbar_translucent_coordinator_drawerlayout:
+                intent.setClass(this, StatusBarTranslucentCoordinatorDrawerLayoutActivity.class);
                 break;
             case R.id.btn_statusbar_white:
                 intent.setClass(this, StatusBarWhiteActivity.class);

@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import flyn.Eyes;
+import flyn.StatusBarUtil;
 
 
 public class StatusBarWhiteToolBarActivity extends AppCompatActivity {
@@ -19,6 +19,6 @@ public class StatusBarWhiteToolBarActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("StatusBar white with toolbar");
 
-        Eyes.setStatusBarLightMode(this, Color.WHITE);
+        StatusBarUtil.setStatusBarLightMode(this, Color.WHITE);
     }
 }

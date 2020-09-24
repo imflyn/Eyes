@@ -23,7 +23,7 @@ import java.lang.reflect.Field;
 import flyn.eyes.library.R;
 
 @TargetApi(Build.VERSION_CODES.KITKAT)
-class EyesKitKat {
+class StatusBarKitKatCompact {
     private static final String TAG_FAKE_STATUS_BAR_VIEW = "statusBarView";
     private static final String TAG_MARGIN_ADDED = "marginAdded";
 
@@ -55,7 +55,7 @@ class EyesKitKat {
             TypedValue typedValue = new TypedValue();
             if (activity.getTheme().resolveAttribute(R.attr.actionBarSize, typedValue, true)) {
                 int actionBarHeight = TypedValue.complexToDimensionPixelSize(typedValue.data, activity.getResources().getDisplayMetrics());
-                Eyes.setContentTopPadding(activity, actionBarHeight);
+                StatusBarUtil.setContentTopPadding(activity, actionBarHeight);
             }
         }
     }
@@ -196,11 +196,11 @@ class EyesKitKat {
 
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                if (Math.abs(verticalOffset) >= (appBarLayout.getTotalScrollRange() - Eyes.getPxFromDp(activity, 56))) {
+                if (Math.abs(verticalOffset) >= (appBarLayout.getTotalScrollRange() - StatusBarUtil.getPxFromDp(activity, 56))) {
                     if (appBarLayoutState != COLLAPSED) {
                         appBarLayoutState = COLLAPSED;
 
-                        if (Eyes.MIUISetStatusBarLightMode(activity, true) || Eyes.FlymeSetStatusBarLightMode(activity, true)) {
+                        if (StatusBarUtil.MIUISetStatusBarLightMode(activity, true) || StatusBarUtil.FlymeSetStatusBarLightMode(activity, true)) {
                         }
                         if (statusView.getAlpha() == 0) {
                             statusView.animate().cancel();
@@ -211,7 +211,7 @@ class EyesKitKat {
                     if (appBarLayoutState != EXPANDED) {
                         appBarLayoutState = EXPANDED;
 
-                        if (Eyes.MIUISetStatusBarLightMode(activity, false) || Eyes.FlymeSetStatusBarLightMode(activity, false)) {
+                        if (StatusBarUtil.MIUISetStatusBarLightMode(activity, false) || StatusBarUtil.FlymeSetStatusBarLightMode(activity, false)) {
                         }
                         if (statusView.getAlpha() == 1) {
                             statusView.animate().cancel();

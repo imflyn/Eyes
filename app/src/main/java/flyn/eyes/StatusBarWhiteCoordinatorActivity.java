@@ -9,7 +9,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import flyn.Eyes;
+import flyn.StatusBarUtil;
 
 public class StatusBarWhiteCoordinatorActivity extends AppCompatActivity {
 
@@ -26,6 +26,6 @@ public class StatusBarWhiteCoordinatorActivity extends AppCompatActivity {
         CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_layout);
         collapsingToolbarLayout.setTitle(getString(R.string.app_name));
 
-        Eyes.setStatusBarLightForCollapsingToolbar(this, mAppBarLayout, collapsingToolbarLayout, toolbar, Color.WHITE);
+        StatusBarUtil.setStatusBarLightForCollapsingToolbar(this, mAppBarLayout, collapsingToolbarLayout, toolbar, Color.WHITE);
     }
 }

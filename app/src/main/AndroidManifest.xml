@@ -36,6 +36,9 @@
         <activity
             android:name=".StatusBarWhiteCoordinatorActivity"
             android:theme="@style/AppTheme.StatusBarWhite.NoActionBar" />
+        <activity
+            android:name=".StatusBarTranslucentCoordinatorDrawerLayoutActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

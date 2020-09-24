@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import flyn.Eyes;
+import flyn.StatusBarUtil;
 
 public class StatusBarTranslucent extends AppCompatActivity {
 
@@ -18,13 +18,13 @@ public class StatusBarTranslucent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statusbar_translucent);
 //        getSupportActionBar().hide();
-        Eyes.translucentStatusBar(this, false);
+        StatusBarUtil.translucentStatusBar(this, false);
 
         findViewById(R.id.toggle).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 isHide = !isHide;
-                Eyes.translucentStatusBar(StatusBarTranslucent.this, isHide);
+                StatusBarUtil.translucentStatusBar(StatusBarTranslucent.this, isHide);
             }
         });
     }

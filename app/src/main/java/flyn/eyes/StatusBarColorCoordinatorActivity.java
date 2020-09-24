@@ -6,7 +6,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import flyn.Eyes;
+import flyn.StatusBarUtil;
 
 public class StatusBarColorCoordinatorActivity extends AppCompatActivity {
 
@@ -18,6 +18,6 @@ public class StatusBarColorCoordinatorActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("StatusBarColorCoordinatorLayout");
 
-        Eyes.setStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary));
+        StatusBarUtil.setStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary));
     }
 }

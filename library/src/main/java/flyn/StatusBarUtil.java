@@ -19,14 +19,14 @@ import android.view.WindowManager;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-public class Eyes {
+public class StatusBarUtil {
 
 
     public static void setStatusBarColor(Activity activity, int statusColor) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            EyesLollipop.setStatusBarColor(activity, statusColor);
+            StatusBarLollipopCompact.setStatusBarColor(activity, statusColor);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            EyesKitKat.setStatusBarColor(activity, statusColor);
+            StatusBarKitKatCompact.setStatusBarColor(activity, statusColor);
         }
     }
 
@@ -36,18 +36,18 @@ public class Eyes {
 
     public static void translucentStatusBar(Activity activity, boolean hideStatusBarBackground) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            EyesLollipop.translucentStatusBar(activity, hideStatusBarBackground);
+            StatusBarLollipopCompact.translucentStatusBar(activity, hideStatusBarBackground);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            EyesKitKat.translucentStatusBar(activity);
+            StatusBarKitKatCompact.translucentStatusBar(activity);
         }
     }
 
     public static void setStatusBarColorForCollapsingToolbar(@NonNull Activity activity, AppBarLayout appBarLayout, CollapsingToolbarLayout collapsingToolbarLayout,
                                                              Toolbar toolbar, @ColorInt int statusColor) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            EyesLollipop.setStatusBarColorForCollapsingToolbar(activity, appBarLayout, collapsingToolbarLayout, toolbar, statusColor);
+            StatusBarLollipopCompact.setStatusBarColorForCollapsingToolbar(activity, appBarLayout, collapsingToolbarLayout, toolbar, statusColor);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            EyesKitKat.setStatusBarColorForCollapsingToolbar(activity, appBarLayout, collapsingToolbarLayout, toolbar, statusColor);
+            StatusBarKitKatCompact.setStatusBarColorForCollapsingToolbar(activity, appBarLayout, collapsingToolbarLayout, toolbar, statusColor);
         }
     }
 
@@ -83,9 +83,9 @@ public class Eyes {
     public static void setStatusBarLightForCollapsingToolbar(Activity activity, AppBarLayout appBarLayout,
                                                              CollapsingToolbarLayout collapsingToolbarLayout, Toolbar toolbar, int statusBarColor) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            EyesLollipop.setStatusBarWhiteForCollapsingToolbar(activity, appBarLayout, collapsingToolbarLayout, toolbar, statusBarColor);
+            StatusBarLollipopCompact.setStatusBarWhiteForCollapsingToolbar(activity, appBarLayout, collapsingToolbarLayout, toolbar, statusBarColor);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            EyesKitKat.setStatusBarWhiteForCollapsingToolbar(activity, appBarLayout, collapsingToolbarLayout, toolbar, statusBarColor);
+            StatusBarKitKatCompact.setStatusBarWhiteForCollapsingToolbar(activity, appBarLayout, collapsingToolbarLayout, toolbar, statusBarColor);
         }
     }
 
